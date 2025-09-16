@@ -11,9 +11,8 @@
         "esModuleInterop": true,
         "extendedDiagnostics": false,
         "incremental": false,
-        // "isolatedModules": false,
         "jsx": "react-jsx",
-        "lib": ["dom", "dom.iterable", "ES6"],
+        "lib": ["dom", "dom.iterable"],
         "module": "esnext",
         "moduleResolution": "node",
         "noImplicitAny": true,
@@ -32,7 +31,7 @@
         "strict": true,
         "strictNullChecks": true,
         "strictPropertyInitialization": true,
-        "target": "ES5"
+        "target": "ES2020"
     },
     "output": ["./dist"],
     "files": ["src/index.tsx"],
@@ -49,8 +48,8 @@
         "./src/**/*.webp"
     ],
     "exclude": [
+        "_backup_/",
         "node_modules/",
-        "doc/",
         "**/*.spec.*",
         "**/*.test.*",
         "**/*.SKIP.*"

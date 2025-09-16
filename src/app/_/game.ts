@@ -10,6 +10,7 @@ import {
     TgdPainterMesh,
     TgdPainterState,
     TgdQuat,
+    webglPresetDepth,
 } from "@tolokoban/tgd"
 
 export function useGameHandler() {
@@ -17,16 +18,18 @@ export function useGameHandler() {
         if (!canvas) return
 
         const camera = new TgdCameraPerspective({
-            distance: 3,
+            transfo: {
+                distance: 3,
+                position: [0, 0, 0],
+            },
             far: 1000,
             near: 0.1,
             fovy: Math.PI / 4,
             zoom: 0.1,
-            target: [0, 0, 0],
         })
         const context = new TgdContext(canvas, { camera })
         const state = new TgdPainterState(context, {
-            depth: "default",
+            depth: webglPresetDepth.lessOrEqual,
             children: [
                 new TgdPainterClear(context, {
                     color: [0, 0, 0, 1],
@@ -50,7 +53,7 @@ export function useGameHandler() {
                     .rotateAroundX(Math.random())
                     .rotateAroundY(Math.random()),
             }),
-            duration: 1500,
+            duration: 1.5,
             easingFunction: tgdEasingFunctionOutBack,
             onEnd() {
                 new TgdControllerCameraOrbit(context, {

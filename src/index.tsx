@@ -17,8 +17,8 @@ async function start() {
 
     const splash = document.getElementById("tgd-logo")
     if (splash) {
-        splash.classList.add("vanish")
-        window.setTimeout(() => splash.parentNode?.removeChild(splash), 1000)
+        // splash.classList.add("vanish")
+        // window.setTimeout(() => splash.parentNode?.removeChild(splash), 1000)
     }
 }
 

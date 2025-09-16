@@ -6,7 +6,6 @@ import BaseRainPainter from "./base-rain-painter"
 const DIAMS_COUNT = 150
 
 export default class RainPainter extends BaseRainPainter {
-    private readonly count: number
     private readonly texture: WebGLTexture
 
     constructor(gl: WebGLRenderingContext, assets: Assets) {
@@ -29,7 +28,7 @@ export default class RainPainter extends BaseRainPainter {
         gl.enable(gl.BLEND)
         gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA)
         this.$uniSize(
-            0.15 * Math.min(gl.canvas.clientWidth, gl.canvas.clientHeight)
+            0.15 * Math.min(gl.drawingBufferWidth, gl.drawingBufferHeight)
         )
         this.$uniTime(time)
         this.$uniTexture(this.texture)

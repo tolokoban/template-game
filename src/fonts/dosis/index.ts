@@ -5,7 +5,6 @@ import "../dosis.css"
 export default {
     name: "dosis",
     load300(): Promise<FontFace> {
-        console.log("🚀 [index] Dosis2 = ", Dosis2) // @FIXME: Remove this line written on 2023-05-11 at 18:19
         const font = new FontFace("dosis", `url(${Dosis2})`, {
             display: "swap",
             style: "normal",
@@ -16,7 +15,6 @@ export default {
         return font.load()
     },
     load700(): Promise<FontFace> {
-        console.log("🚀 [index] Dosis5 = ", Dosis5) // @FIXME: Remove this line written on 2023-05-11 at 18:19
         const font = new FontFace("dosis", `url(${Dosis5})`, {
             display: "swap",
             style: "normal",

@@ -16,7 +16,7 @@
                 left: 0;
                 right: 0;
                 bottom: 0;
-                font-size: 14px;
+                font-size: 3vmin;
                 font-family: sans-serif;
                 padding: 8px;
                 text-align: right;
@@ -24,8 +24,8 @@
             }
 
             #tgd-logo {
-                background: #0cace1;
-                color: #210;
+                background: #002e3d;
+                color: #fff;
                 z-index: 9999;
             }
 
@@ -66,7 +66,7 @@
                     fill: #d70;
                 }
                 33% {
-                    fill: #c50;
+                    fill: #6d2e01;
                 }
                 67% {
                     fill: #b60;
@@ -83,7 +83,7 @@
                     fill: #d70;
                 }
                 67% {
-                    fill: #c50;
+                    fill: #6d2e01;
                 }
                 100% {
                     fill: #b60;
@@ -91,7 +91,7 @@
             }
             @keyframes tgd-logo-anim-c2 {
                 0% {
-                    fill: #c50;
+                    fill: #6d2e01;
                 }
                 33% {
                     fill: #b60;
@@ -100,7 +100,7 @@
                     fill: #d70;
                 }
                 100% {
-                    fill: #c50;
+                    fill: #6d2e01;
                 }
             }
         </style>
@@ -115,23 +115,25 @@
                 viewBox="-700 -700 1400 1400"
                 xmlns="http://www.w3.org/2000/svg"
             >
-                <path
-                    class="c1"
-                    d="M87,550L520-200 -173-200-87-50 260-50-87 550Z"
-                    fill="#d70"
-                />
-                <path
-                    class="c2"
-                    d="M87,550L520-200 -173-200-87-50 260-50-87 550Z"
-                    fill="#c50"
-                    transform="rotate(120)"
-                />
-                <path
-                    class="c3"
-                    d="M87,550L520-200 -173-200-87-50 260-50-87 550Z"
-                    fill="#b60"
-                    transform="rotate(240)"
-                />
+                <g stroke="#000" stroke-width="4">
+                    <path
+                        class="c1"
+                        d="M87,550L520-200 -173-200-87-50 260-50-87 550Z"
+                        fill="#d70"
+                    />
+                    <path
+                        class="c2"
+                        d="M87,550L520-200 -173-200-87-50 260-50-87 550Z"
+                        fill="#c50"
+                        transform="rotate(120)"
+                    />
+                    <path
+                        class="c3"
+                        d="M87,550L520-200 -173-200-87-50 260-50-87 550Z"
+                        fill="#b60"
+                        transform="rotate(240)"
+                    />
+                </g>
             </svg>
             <div id="tgd-logo-powered">Powered by <b>Tolokoban</b></div>
         </div>
