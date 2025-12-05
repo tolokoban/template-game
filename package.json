@@ -8,8 +8,8 @@
     "homepage": "./",
     "dependencies": {
         "@tolokoban/react-state": "^0.6.0",
-        "@tolokoban/tgd": "^2.0.48",
-        "@tolokoban/type-guards": "^0.8.3",
+        "@tolokoban/tgd": "^2.0.71",
+        "@tolokoban/type-guards": "^0.9.0",
         "build-react-routes": "^0.10.8",
         "json5": "^2.2.3",
         "react": "^19.2.0",
@@ -19,8 +19,8 @@
         "generate": "npm run routes",
         "routes": "build-react-routes ./src/app",
         "analyse": "webpack --profile --json > stats.json",
-        "start": "webpack serve --mode=development",
-        "build": "webpack --mode=production",
+        "start": "rspack serve --mode=development",
+        "build": "rspack --mode=production",
         "predeploy": "npm run build",
         "deploy": "gh-pages -d build",
         "format": "npx prettier --write src/",
@@ -42,6 +42,8 @@
         ]
     },
     "devDependencies": {
+        "@rspack/cli": "^1.6.6",
+        "@rspack/core": "^1.6.6",
         "@types/react": "^18.3.24",
         "@types/react-dom": "^18.3.7",
         "clean-webpack-plugin": "^4.0.0",
@@ -77,12 +79,9 @@
         "ts-node": "^10.9.2",
         "typescript": "^5.9.2",
         "url-loader": "^4.1.1",
-        "webpack": "^5.101.3",
-        "webpack-cli": "^6.0.1",
         "webpack-dev-server": "^5.2.2",
         "webpack-shell-plugin-next": "^2.3.3",
         "workbox-webpack-plugin": "^7.3.0",
         "yaml-loader": "^0.8.1"
-    },
-    "port": 1360
+    }
 }

@@ -4,6 +4,11 @@ declare module "*.module.css" {
     export default content
 }
 
+declare module "*.glb" {
+    const value: string
+    export = value
+}
+
 declare module "*.mp4" {
     const value: string
     export = value
