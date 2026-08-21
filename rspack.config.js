@@ -10,6 +10,7 @@ import rehypeHighlightCodeLines from "rehype-highlight-code-lines"
 import highlightJs from "highlight.js"
 import WebpackShellPluginNext from "webpack-shell-plugin-next"
 import Rspack from "@rspack/core"
+import { GenerateSW } from "workbox-webpack-plugin"
 import path from "path"
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname)
@@ -122,6 +123,10 @@ export default (env) => {
                 minify: isProdMode,
             }),
             new Rspack.CssExtractRspackPlugin(),
+            new GenerateSW({
+                clientsClaim: true,
+                skipWaiting: true,
+            }),
         ],
         performance: {
             hints: "warning",
