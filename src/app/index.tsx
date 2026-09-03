@@ -17,6 +17,7 @@ export * from "./routes"
 export * from "./types"
 
 
+import NotFound0 from "./404"
 const Page0 = React.lazy(() => import("./page"))
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -25,7 +26,7 @@ export default function App({ lang }: { lang?: string }) {
     const fb = <div>Loading...</div>
     const pg0 = Page0
     return (
-        <Route path="/" Page={pg0} fallback={fb} context={context}/>
+        <Route path="/" Page={pg0} NotFound={NotFound0} fallback={fb} context={context}/>
     )
 }
 
@@ -59,6 +60,7 @@ interface RouteProps {
     Page?: PageComponent
     Layout?: ContainerComponent
     Template?: ContainerComponent
+    NotFound?: React.FC
     context: RouteMatch | null
 }
 
@@ -69,6 +71,7 @@ function Route({
     Page,
     Layout,
     Template,
+    NotFound,
     context,
 }: RouteProps) {
     const match = context && matchRoute(context.path, ROUTES[path as RoutePath])
@@ -76,7 +79,12 @@ function Route({
     if (!match) return null
 
     if (match.distance === 0) {
-        if (!Page) return null
+        if (!Page) {
+            if (NotFound) return Layout ? (
+                <Layout params={match.params}><NotFound /></Layout>
+            ) : <NotFound />
+            return null
+        }
 
         const element = Template ? (
             <Template params={match.params}>
@@ -96,9 +104,27 @@ function Route({
         }
         return <React.Suspense fallback={fallback}>{element}</React.Suspense>
     }
+
+    if (NotFound && !hasMatchingChild(context.path, children)) {
+        return Layout ? (
+            <Layout params={match.params}><NotFound /></Layout>
+        ) : (
+            <NotFound />
+        )
+    }
+
     return Layout ? (
         <Layout params={match.params}>{children}</Layout>
     ) : (
         <>{children}</>
     )
+}
+
+function hasMatchingChild(path: string, children: React.ReactNode): boolean {
+    return React.Children.toArray(children).some(child => {
+        if (!React.isValidElement(child)) return false
+        const childPath = (child.props as { path?: string }).path
+        if (!childPath) return false
+        return matchRoute(path, ROUTES[childPath as RoutePath]) !== null
+    })
 }
