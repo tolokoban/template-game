@@ -26,7 +26,9 @@ export default (env) => {
         console.log("A random port has been set for dev server:", Package.port)
     }
 
-    const isProdMode = env.WEBPACK_BUILD === true
+    // Rspack v2's CLI passes `RSPACK_BUILD` (v1 used the webpack-inherited
+    // `WEBPACK_BUILD` name); keep both so this keeps working across versions.
+    const isProdMode = env.RSPACK_BUILD === true || env.WEBPACK_BUILD === true
     if (isProdMode) {
         console.log("+-----------------+")
         console.log("| Production Mode |")
@@ -105,10 +107,10 @@ export default (env) => {
             new Rspack.CopyRspackPlugin({
                 patterns: [
                     {
-                        from: "public/*",
+                        from: "*",
                         context: Path.resolve(__dirname, "public"),
                         globOptions: {
-                            ignore: ["index.html"],
+                            ignore: ["**/index.html"],
                         },
                     },
                 ],
@@ -162,14 +164,13 @@ export default (env) => {
             rules: [
                 {
                     test: /\.tsx?$/,
-                    use: [
-                        {
-                            loader: "ts-loader",
-                            options: {
-                                transpileOnly: false,
-                            },
+                    loader: "builtin:swc-loader",
+                    options: {
+                        jsc: {
+                            parser: { syntax: "typescript", tsx: true },
+                            transform: { react: { runtime: "automatic" } },
                         },
-                    ],
+                    },
                     exclude: /node_modules/,
                 },
                 // {
@@ -227,6 +228,13 @@ export default (env) => {
                                 modules: {
                                     auto: true,
                                     namedExport: false,
+                                    // Without this, css-loader's default convention for
+                                    // `namedExport: false` is "camel-case-only", which lowercases
+                                    // the first letter of PascalCase class names (e.g. `.Button`
+                                    // becomes `button`) and drops the original name entirely.
+                                    // @tolokoban/ui relies on accessing PascalCase class names
+                                    // as-is (e.g. `Styles.Button`), so keep them unchanged.
+                                    exportLocalsConvention: "asIs",
                                     localIdentName: isProdMode
                                         ? "[hash:base64]"
                                         : "[path][name]_[local]_[hash:base64:6]",
