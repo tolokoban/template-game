@@ -1,5 +1,6 @@
 import React from "react"
 import { createRoot } from "react-dom/client"
+import { Theme } from "@tolokoban/ui"
 
 import State from "@/state"
 
@@ -9,6 +10,13 @@ import FontDosis from "./fonts/dosis"
 import "./index.css"
 
 async function start() {
+    Theme.apply({
+        colors: {
+            neutral: "#334",
+            primary: "#37e",
+            secondary: "#f90",
+        }
+    })
     FontDosis.load300()
     FontDosis.load700()
     const container = document.getElementById("app")

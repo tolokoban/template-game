@@ -17,6 +17,9 @@ importers:
       '@tolokoban/type-guards':
         specifier: ^0.9.0
         version: 0.9.0
+      '@tolokoban/ui':
+        specifier: ^0.25.7
+        version: 0.25.7(react@19.2.8)
       build-react-routes:
         specifier: ^0.11.1
         version: 0.11.1
@@ -1642,6 +1645,11 @@ packages:
 
   '@tolokoban/type-guards@0.9.0':
     resolution: {integrity: sha512-MLOlLsGBrvol1yR25K/kai7/DoZtVYHmedRxKmjS8We7vwwas/9wyVvijAg0bcAucOSNOyWtviNikLkmvri9lQ==}
+
+  '@tolokoban/ui@0.25.7':
+    resolution: {integrity: sha512-8pb1IXcjapqJ5Nr3yC9m7jVGsJG6aEWqRj9s/XtVK9i8zHoSf1laJBQsubhXk9CFqFgJBl3sfgvFtrxP++ZoBw==}
+    peerDependencies:
+      react: ^19.2.4
 
   '@trickfilm400/rollup-plugin-off-main-thread@3.0.0-pre1':
     resolution: {integrity: sha512-/67zpWDBLV+oYAEL682s1ktXL0HgqX76f6gaVGkGnVZlBbm1zd0v4Bz8MFF2GGhoX9rvfq3KSQHubFHwa6w6/Q==}
@@ -6494,6 +6502,12 @@ snapshots:
       gl-matrix: 3.4.4
 
   '@tolokoban/type-guards@0.9.0': {}
+
+  '@tolokoban/ui@0.25.7(react@19.2.8)':
+    dependencies:
+      json5: 2.2.3
+      react: 19.2.8
+      tslib: 2.8.1
 
   '@trickfilm400/rollup-plugin-off-main-thread@3.0.0-pre1':
     dependencies:
